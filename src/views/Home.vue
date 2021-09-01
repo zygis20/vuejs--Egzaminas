@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrapper">
+    <h1> All Giveaways</h1>
+    <div class="home">
+      <SingleGiveaway v-for="(item, index) in giveaways" :key="index" :giveaway="item"/>
+    </div>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SingleGiveaway from "@/components/SingleGiveaway";
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    SingleGiveaway,
+  }, computed: {
+    giveaways() {
+      return this.$store.state.data.giveaways
+    }
   }
 }
 </script>
+<style scoped>
+.home {
+  width: 950px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>
